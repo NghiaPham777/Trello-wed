@@ -17,6 +17,7 @@ module.exports = {
   rules: {
     //React
     'react-refresh/only-export-components': 'warn',
+
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'react/prop-types': 0,
@@ -50,5 +51,6 @@ module.exports = {
     'comma-spacing': 1,
     'arrow-spacing': 1
   }
+
 }
 }
