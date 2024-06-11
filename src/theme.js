@@ -23,6 +23,46 @@ const theme = extendTheme({
       appBarHeight: "58px",
       boardBarHeight: "60px"
     },
+    components: {
+      // Name of the component
+      MuiButton: {
+        styleOverrides: {
+          // Name of the slot
+          root: {
+            // Some CSS
+            textTransform: 'none',
+          },
+        }
+      },
+      MuiInputLabel: {
+        styleOverrides: {
+          // Name of the slot
+          root: ({ theme}) => ({
+            color: theme.palette.primary.main,
+            fontSize: '0.85rem',
+          })
+        }
+      },
+      MuiOutlinedInput: {
+        styleOverrides: {
+          // Name of the slot
+          root: ({ theme}) => ({
+            color: theme.palette.primary.main,
+            fontSize: '0.85rem',
+            '& fieldset': {
+              borderColor: theme.palette.primary.light,
+              borderWidth: '1px !important',
+            },
+            
+            '&:hover': {
+              ".MuiOutlinedInput-notchedOutline": {
+                borderColor: theme.palette.primary.main,
+              },
+            },
+          })
+        },
+      },
+    },
   })
 
 export default theme;
