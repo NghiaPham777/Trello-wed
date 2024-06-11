@@ -24,6 +24,23 @@ const theme = extendTheme({
       boardBarHeight: "60px"
     },
     components: {
+      MuiCssBaseline:{
+        styleOverrides: {
+          body: {
+            '*::-webkit-scrollbar': {
+              width: '8px',
+              height: '8px',
+            },
+            '*::-webkit-scrollbar-thumb': {
+              backgroundColor: '#bdc3c7',
+              borderRadius: '8px',
+            },
+            '*::-webkit-scrollbar-thumb:hover': {
+              backgroundColor: '#7f8c8d',
+            },
+          }
+        }
+      },
       // Name of the component
       MuiButton: {
         styleOverrides: {
