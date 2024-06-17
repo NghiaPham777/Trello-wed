@@ -1,4 +1,4 @@
-import  Box  from '@mui/material/Box'
+import Box from '@mui/material/Box'
 import Chip from '@mui/material/Chip'
 import DashboardIcon from '@mui/icons-material/Dashboard'
 import VpnLockIcon from '@mui/icons-material/VpnLock'
@@ -15,13 +15,13 @@ const MENU_STYLES = {
   color: 'white',
   backgroundColor: 'transparent',
   border: 'none',
-  paddingX: "5px",
+  paddingX: '5px',
   borderRadius: '4px',
   '.MuiSvgIcon-root':{
-    color: 'white',
+    color: 'white'
   },
   '&:hover':{
-    backgroundColor: 'primary.50',
+    backgroundColor: 'primary.50'
   }
 }
 function BoardBar() {
@@ -37,66 +37,71 @@ function BoardBar() {
       overflowX: 'auto',
       bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#34495e' : '#1976d2'),
       borderBottom: '1px solid white',
+      '&::-webkit-scrollbar-track': { m: 0.5 }
     }}>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2}}> 
-        <Chip 
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+        <Chip
           sx={MENU_STYLES}
-        icon={<DashboardIcon />} 
-        label="NghiaPH" 
-        clickable={true}
+          icon={<DashboardIcon />}
+          label="NghiaPH"
+          clickable={true}
         />
-        <Chip 
+        <Chip
           sx={MENU_STYLES}
-        icon={<VpnLockIcon />} 
-        label="Public/Private Workspaces" 
-        clickable={true}
+          icon={<VpnLockIcon />}
+          label="Public/Private Workspaces"
+          clickable={true}
         />
-        <Chip 
+        <Chip
           sx={MENU_STYLES}
-        icon={<AddToDriveIcon />} 
-        label="Add to Drive" 
-        clickable={true}
+          icon={<AddToDriveIcon />}
+          label="Add to Drive"
+          clickable={true}
         />
-        <Chip 
+        <Chip
           sx={MENU_STYLES}
-        icon={<AutoModeIcon />} 
-        label="Automation" 
-        clickable={true}
+          icon={<AutoModeIcon />}
+          label="Automation"
+          clickable={true}
         />
-        <Chip 
+        <Chip
           sx={MENU_STYLES}
-        icon={<FilterListIcon />} 
-        label="FilterListIcon" 
-        clickable={true}
+          icon={<FilterListIcon />}
+          label="FilterListIcon"
+          clickable={true}
         />
       </Box>
 
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2}}> 
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
         <Button
           variant="outlined"
-          startIcon={<PersonAddIcon />} 
-          sx={{ 
+          startIcon={<PersonAddIcon />}
+          sx={{
             color: 'white',
             borderColor: 'white',
             '&:hover': {
-              borderColor: 'white',
+              borderColor: 'white'
             }
           }}
         >Invite</Button>
-        <AvatarGroup max={4} 
-        sx={{
-          gap: '10px',
-          '& .MuiAvatar-root':{
-            width: 34,
-            height: 34,
-            fontsize: 16,
-            border: 'none',
-          }
-        }}
+        <AvatarGroup
+          max={4}
+          sx={{
+            gap: '10px',
+            '& .MuiAvatar-root':{
+              width: 34,
+              height: 34,
+              fontsize: 16,
+              border: 'none',
+              color: 'white',
+              cursor: 'pointer',
+              '&:first-of-type': { bgcolor: '#a4b0be' }
+            }
+          }}
         >
           <Tooltip title="nghiaph">
-            <Avatar 
-            alt="NghiaPH" 
+            <Avatar
+            alt="NghiaPH"
             src="https://scontent.fsgn2-6.fna.fbcdn.net/v/t39.30808-6/269496411_1883470442040706_6226116910360332973_n.jpg?stp=dst-jpg_p206x206&_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeEZNth1128PEFjO4oEYEi0ix05m0nWOQGjHTmbSdY5AaH8Lj8OxI7OLOvXCo_jXTy2pf97xOt12EMShUZmiP3SX&_nc_ohc=y0wZKV_zR6QQ7kNvgEV0I1b&_nc_ht=scontent.fsgn2-6.fna&oh=00_AYBax7gQnRCSXnUHugCMU0Kux-m05MVdRC1pPizNzLFmYg&oe=666DE3CA" 
             />
           </Tooltip>
