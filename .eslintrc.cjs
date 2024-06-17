@@ -24,13 +24,12 @@ module.exports = {
     'react/display-name': 0,
 
     //Mui
-    'rules': {
-      'no-restricted-imports': [
-        'error',
-        {
-          'patterns': ["@mui/*/*/*"]
-        }
-      ],
+    'no-restricted-imports': [
+      'error',
+      {
+        'patterns': ['@mui/*/*/*']
+      }
+    ],
     //common
     'no-console': 1,
     'no-lonely-if': 1,
@@ -52,5 +51,4 @@ module.exports = {
     'arrow-spacing': 1
   }
 
-}
 }
