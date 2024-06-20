@@ -1,8 +1,8 @@
-import Box from '@mui/material/Box'
-import Column from './Column/Column'
-import Button from '@mui/material/Button'
 import PostAddIcon from '@mui/icons-material/PostAdd'
-function ListColumns() {
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Column from './Column/Column'
+function ListColumns({ columns }) {
   return (
     <Box sx={{
       bgcolor: 'inherit',
@@ -13,10 +13,9 @@ function ListColumns() {
       overflowY: 'hidden',
       '&::-webkit-scrollbar-track': { m: 2 }
     }}>
-      <Column />
-      <Column />
-      <Column />
+      {columns?.map(column => <Column key={column._id} column={column}/>)}
 
+      {/* Box add new column */}
       <Box sx={{
         minWidth: '200px',
         maxWidth: '200px',
@@ -25,7 +24,7 @@ function ListColumns() {
         height: 'fit-content',
         bgcolor: '#ffffff3d'
       }}>
-        {/* Box add new column */}
+        
         <Button
           startIcon={<PostAddIcon />}
           sx={{
