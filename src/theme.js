@@ -5,6 +5,8 @@ import { cyan, deepOrange, orange, teal } from '@mui/material/colors'
 const APP_BAR_HEIGHT = '58px'
 const BOARD_BAR_HEIGHT = '60px'
 const BOARD_CONTENT_HEIGHT = `calc(100vh - ${APP_BAR_HEIGHT} - ${BOARD_BAR_HEIGHT})`
+const COLUMN_HEADER_HEIGHT = '50px'
+const COLUMN_FOOTER_HEIGHT = '56px'
 // Create a theme instance.
 const theme = extendTheme({
   colorSchemes: {
@@ -25,6 +27,8 @@ const theme = extendTheme({
     appBarHeight: APP_BAR_HEIGHT,
     boardBarHeight: BOARD_BAR_HEIGHT,
     boardContentHeight: BOARD_CONTENT_HEIGHT,
+    columnHeaderHeight: COLUMN_HEADER_HEIGHT,
+    columnFooterHeight: COLUMN_FOOTER_HEIGHT
   },
   components: {
     MuiCssBaseline:{
@@ -56,9 +60,9 @@ const theme = extendTheme({
           textTransform: 'none',
           borderWidth: '0.5px',
           '&:hover': {
-            borderWidth: '2px',
-          },
-        },
+            borderWidth: '2px'
+          }
+        }
       }
     },
     MuiInputLabel: {
@@ -66,7 +70,7 @@ const theme = extendTheme({
         // Name of the slot
         root: {
           // color: theme.palette.primary.main,
-          fontSize: '0.875rem',
+          fontSize: '0.875rem'
         }
       }
     },
@@ -85,18 +89,18 @@ const theme = extendTheme({
           // color: theme.palette.primary.main,
           fontSize: '0.875rem',
           '& fieldset': {
-            borderWidth: '0.5px !important',
+            borderWidth: '0.5px !important'
           },
           '&:hover fieldset': {
-            borderWidth: '2px !important',
+            borderWidth: '2px !important'
           },
           '&.Mui-focused fieldset': {
-            borderWidth: '2px !important',
-          },
+            borderWidth: '2px !important'
+          }
         }
-      },
-    },
-  },
+      }
+    }
+  }
 })
 
-export default theme;
+export default theme
