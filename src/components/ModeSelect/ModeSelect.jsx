@@ -38,24 +38,24 @@ function ModeSelect() {
             color: 'white' ,
             '.MuiOutlinedInput-notchedOutline': { borderColor: 'white'},
             '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: 'white'},
-            '&.Mui-focused .MuiOutlinedInput-notchedOutline': { borderColor: 'white'},
+            '&.Mui-focused .MuiOutlinedInput-notchedOutline': { borderColor: 'white' },
             '.MuiSvgIcon-root':{ color: 'white'}
           }}
         >
           <MenuItem value="light">
-            <Box sx={{ display: 'flex', alignItems: "center", gap: 1}}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1}}>
               <LightModeIcon fontSize="small" />
               Light
             </Box>
           </MenuItem>
           <MenuItem value="dark">
-            <Box sx={{ display: 'flex', alignItems: "center", gap: 1}}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1}}>
               <DarkModeOutlinedIcon fontSize="small"/>
               Dark
             </Box>
           </MenuItem>
           <MenuItem value="system">
-            <Box sx={{ display: 'flex', alignItems: "center", gap: 1}}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1}}>
               <SettingsBrightnessIcon fontSize="small"/>
               System
             </Box>
