@@ -1,25 +1,24 @@
-import Box from '@mui/material/Box'
-import ListColumns from './ListColumns/ListColumns'
-import { mapOrder } from '~/utils/sorts'
-import { 
-  DndContext, 
-  MouseSensor, 
-  TouchSensor, 
-  useSensor, 
-  useSensors, 
-  DragOverlay, 
-  defaultDropAnimationSideEffects,
+import {
+  DndContext,
+  DragOverlay,
+  MouseSensor,
+  TouchSensor,
   closestCorners,
-  pointerWithin,
-  rectIntersection,
+  defaultDropAnimationSideEffects,
   getFirstCollision,
-  closestCenter
+  pointerWithin,
+  useSensor,
+  useSensors
 } from '@dnd-kit/core'
 import { arrayMove } from '@dnd-kit/sortable'
+import Box from '@mui/material/Box'
+import { cloneDeep, isEmpty } from 'lodash'
+import { generatePlaceholderCard } from '~/utils/formatters'
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { mapOrder } from '~/utils/sorts'
 import Column from './ListColumns/Column/Column'
 import Card from './ListColumns/Column/ListCards/Card/Card'
-import { cloneDeep } from 'lodash' 
+import ListColumns from './ListColumns/ListColumns'
 
 const ACTIVE_DRAG_ITEM_TYPE = {
   COLUMN: 'ACTIVE_DRAG_ITEM_TYPE_COLUMN',
@@ -79,6 +78,11 @@ function BoardContent({ board }) {
         if (nextActiveColumn) {
           // xoá card ở col cũ nếu kéo card qua col khác
           nextActiveColumn.cards = nextActiveColumn.cards.filter(card => card._id !== activeDraggingCardId)
+          //Thêm FE_PLaceholderCard nếu Col rỗng (bị kéo hết card đi)
+          if (isEmpty(nextActiveColumn.cards)) {
+            nextActiveColumn.cards = [generatePlaceholderCard(nextActiveColumn)]
+            // console.log('Card cuối cùng bị kéo')
+          }
           // Cập nhật lại cardOrderIds sau khi thay đổi list card
           nextActiveColumn.cardOrderIds = nextActiveColumn.cards.map(card => card._id)
         }
@@ -93,6 +97,8 @@ function BoardContent({ board }) {
             0,
             { ...activeDraggingCardData, columnId: nextOverColumn._id }
           )
+          //Xoá PlaceholderCard đi nếu đang tồn tại
+          nextOverColumn.cards = nextOverColumn.cards.filter(card => !card.FE_PlaceholderCard)
           // Cập nhật lại array cardOrderIds sau khi thay đổi card
           nextOverColumn.cardOrderIds = nextOverColumn.cards.map(card => card._id)
 
@@ -184,7 +190,6 @@ function BoardContent({ board }) {
 
           targetColumn.cards = dndOrderedCards
           targetColumn.cardOrderIds = dndOrderedCards.map(card => card._id)
-          console.log('targetColumn: ', targetColumn)
           return nextColumns
         })
       }
@@ -221,17 +226,20 @@ function BoardContent({ board }) {
     }
 
     const pointerIntersection = pointerWithin(args)
-    const intersections = !!pointerIntersection?.length
-      ? pointerIntersection 
-      : rectIntersection(args)
-    //Tìm overId đầu tiên trong đám intersection ở trên
-    let overId = getFirstCollision(intersections, 'id')
+
+    if (!pointerIntersection?.length) return
+
+    // const intersections = !!pointerIntersection?.length
+    //   ? pointerIntersection 
+    //   : rectIntersection(args)
+    //Tìm overId đầu tiên trong đám pointerIntersection ở trên
+    let overId = getFirstCollision(pointerIntersection, 'id')
     if (overId) {
-      //Nếu over là col thì tìm tới cardId gần nhất bằng closestCenter
+      //Nếu over là col thì tìm tới cardId gần nhất bằng closestCorners
       const checkColumn = orderedColumns.find(column => column._id === overId)
       if (checkColumn) {
         // console.log('overId before: ', overId)
-        overId = closestCenter({
+        overId = closestCorners({
           ...args,
           droppableContainers: args.droppableContainers.filter(container => {
             return (container.id !== overId) && (checkColumn?.cardOrderIds?.includes(container.id))
@@ -243,7 +251,7 @@ function BoardContent({ board }) {
       return [{ id: overId }]
     }
 
-    return lastOverId.current ? [{ id: lastOverId.current}] : []
+    return lastOverId.current ? [{ id: lastOverId.current }] : []
   }, [activeDragItemType, orderedColumns])
   return (
     <DndContext 
